@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Manejo de condicionales con VueJS</title>
+</head>
+<body>
+	<div id="app">
+		<!-- Mostrar u ocultar elementos - Mediante v-if: -->
+		<!--
+		Para un render inicial es recomendable v-if
+
+		Se engloba los elementos en <template v-if=“mostrar”>
+	    Dentro del script utilizar el elemento mostrar como un true
+
+		Vue.js utiliza en vez de div un template que es un contenedor 
+		invisible o dinámico, que en el navegador desaparece o se destruye. 
+		Se usa para agregarle atributos de vue pero que sea “invisible” ante el navegador
+		-->
+
+		<!--<template v-if="mostrar">
+			<h1>Este es mi titulo</h1>
+			<h2>Este es mi subtitulo</h2>
+			<a :href="url" target="_blank">Ir a {{ pagina }}</a>
+		</template>-->
+
+
+		<!-- Otra manera - Mediante v-show -->
+		<!--
+		No se puede usar en los <template>, sólo en div o elementos que el navegador entienda
+		Se usa si se va a ocultar o mostrar mucho, si tiene que ver con interacción de usuario 
+		es preferible usar éste
+
+		dentro de un <div v-show=“mostrar”>
+		o en otro <div v-show="!mostrar">
+		-->
+
+		<div v-show="mostrar">
+			<h1>Este es mi titulo</h1>
+			<h2>Este es mi subtitulo</h2>
+			<a v-if="mostrar" :href="url" target="_blank">Ir a {{ pagina }}</a>
+		</div>
+		<div v-show="!mostrar">
+			Esto está oculto
+		</div>
+	</div>
+
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+	<script type="text/javascript">
+
+		/**
+		 * Creamos un objeto de tipo Vue y le tenemos que pasar un
+		 * objeto como parametro.
+		 */
+		let app = new Vue({
+			/**
+			 * Obtiene el elemento con id = 'app'
+			 */
+			el: '#app',
+			/**
+			 * Objeto con key-value que va a contener todas las variables que
+			 * queremos que reemplace dentro del elemento definido anteriormente,
+			 * en este caso '#app'
+			 */
+			data: {
+				url: 'https://google.com',
+				pagina: 'Google',
+				mostrar: true
+			}
+		})
+	</script>
+</body>
+</html>
