@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Hola VueJS</title>
+</head>
+<body>
+	<div id="app">
+		Hola {{ nombre }}
+
+		<!-- <a href="https://google.com" target="_blank">Ir a Google</a> -->
+		<!--
+			No podemos escribir variables de Vue directamente en los atributos
+			de un elemento HTML, en este caso nos dará error al tratar de utilizar
+			la variable 'url' en el atributo 'href' pero si podemos utilizar
+			la variable 'pagina' dentro del contenido de la etiqueta.
+		-->
+		<!-- <a href="{{ url }}" target="_blank">{{ pagina }}</a> -->
+
+		<!--
+			Para poder utilizar variables de Vue en los atributos de un elemento
+			se debe hacer de la siguiente manera.
+			Nota: En este caso ya no es necesario utilizar {{}}
+		-->
+		<!-- <a v-bind:href="url" target="_blank">{{ pagina }}</a> -->
+
+		<!--
+			Otra forma de darle solución al mismo problema es de la
+			siguiente manera: Podemos omitir escribir lo siguiente
+			antes del atributo 'v-bind', con sólo anteponer ':' Vue
+			ya entiende que se trata de un atributo especial.
+		-->
+
+		<a :href="url" target="_blank">Ir a {{ pagina }}</a>
+	</div>
+
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+	<script type="text/javascript">
+
+		/**
+		 * Creamos un objeto de tipo Vue y le tenemos que pasar un
+		 * objeto como parametro.
+		 */
+		let app = new Vue({
+			/**
+			 * Obtiene el elemento con id = 'app'
+			 */
+			el: '#app',
+			/**
+			 * Objeto con key-value que va a contener todas las variables que
+			 * queremos que reemplace dentro del elemento definido anteriormente,
+			 * en este caso '#app'
+			 */
+			data: {
+				/**
+				 * Le indicamos que la variable nombre, va a tener el valor 'Enmanuel'
+				 */
+				nombre: 'Enmanuel',
+				url: 'https://google.com',
+				pagina: 'Google'
+			}
+		})
+	</script>
+</body>
+</html>
