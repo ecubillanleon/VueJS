@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Filto de datos en VueJS</title>
+</head>
+<body>
+	<div id="app">
+		<h1>{{ titulo | uppercase }}</h1>
+		<h2>{{ subtitulo | lowercase | capitalize }}</h2>
+	</div>
+
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+	<script type="text/javascript">
+
+		/**
+		 * Creamos un objeto de tipo Vue y le tenemos que pasar un
+		 * objeto como parametro.
+		 */
+		let app = new Vue({
+			/**
+			 * Obtiene el elemento con id = 'app'
+			 */
+			el: '#app',
+			/**
+			 * Objeto con key-value que va a contener todas las variables que
+			 * queremos que reemplace dentro del elemento definido anteriormente,
+			 * en este caso '#app'
+			 */
+			data: {
+				titulo: 'Estás en Platzi!',
+				subtitulo: 'Aprediendo Vue.js',
+			},
+
+			filters: {
+				uppercase: function(str) {
+					return str.toUpperCase()
+				},
+				lowercase: function(str) {
+					return str.toLowerCase()
+				},
+				capitalize: function(str) {
+					return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase()
+				}
+			}
+		})
+	</script>
+</body>
+</html>
