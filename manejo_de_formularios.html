@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Manejo de formularios en VueJS</title>
+</head>
+<body>
+	<!--
+	v-model: Establece enlace
+	Esta directiva establece un enlace de 2 vías entre un input y el estado de la app.
+	-->
+	<div id="app">
+		<input type="text" name="nombre" placeholder="Ingresa tu nombre" v-model="nombre">
+		<p>Tu nombre en mayúscula es: {{ nombre | uppercase }}</p>
+	</div>
+
+	<!-- Formulario -->
+	<!-- 
+	El evento v-on:submit | @submit.prevent 
+	es utilizado para no hacer lo que por defecto hace el navegador
+	-->
+	<form @submit.prevent="submit" action="" method="get">
+		<h2>¿Cuáles son tus cursos favoritos?</h2>
+		<input type="checkbox" v-model="cursos" id="vue" value="vue">
+		<label for="vue">Curso de Vue.js</label><br>
+		<input type="checkbox" v-model="cursos" id="react" value="react">
+		<label for="react">Curso de React</label><br>
+		<input type="checkbox" v-model="cursos" id="angular" value="angular">
+		<label for="angular">Curso de Angular</label><br>
+		<button type="submit">Enviar</button>
+	</form>
+
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+	<script type="text/javascript">
+
+		/**
+		 * Creamos un objeto de tipo Vue y le tenemos que pasar un
+		 * objeto como parametro.
+		 */
+		let app = new Vue({
+			/**
+			 * Obtiene el elemento con id = 'app'
+			 */
+			el: '#app',
+			/**
+			 * Objeto con key-value que va a contener todas las variables que
+			 * queremos que reemplace dentro del elemento definido anteriormente,
+			 * en este caso '#app'
+			 */
+			data: {
+				nombre: '',
+				cursos: []
+			},
+			/** Filtros en Vue.js para manejar las mayuscula (uppercase), 
+			* las minusculas (lowercase), y capitalize (la primera letra en mayuscula)
+			*/
+			filters: {
+				uppercase: function(str) {
+					return str.toUpperCase()
+				},
+			},
+			/**
+			* Metodos en Vue.js
+			* submit
+			*/
+			methods: {
+				submit: function() {
+					console.log('Se ejecuta el método submit.')
+					console.log(this.cursos)
+				}
+			}
+		})
+	</script>
+</body>
+</html>
