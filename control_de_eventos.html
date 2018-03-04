@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Control de eventos en VueJS</title>
+</head>
+<body>
+	<div id="app">
+		<!--
+			v-on: Añade listeners
+			Esta directiva añades escuchadores de eventos que invocan métodos.
+		-->
+
+		<!--
+			<button v-on:click="sumar">Sumar 1</button>
+			<button v-on:click="restar">Restar 1</button>
+			El contador está en {{ contador }}
+		-->
+
+		<!-- otra forma de hacerlo es con @click -->
+		<!--
+			<button @click="sumar">Sumar 1</button>
+			<button @click="restar">Restar 1</button>
+			El contador está en {{ contador }}
+		-->
+
+		<!-- otra forma de hacerlo es colocando directamente la función en el botón -->
+		<button @click="contador++">Sumar 1</button>
+		<button @click="contador--">Restar 1</button>
+		El contador está en {{ contador }}
+	</div>
+
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+	<script type="text/javascript">
+
+		/**
+		 * Creamos un objeto de tipo Vue y le tenemos que pasar un
+		 * objeto como parametro.
+		 */
+		let app = new Vue({
+			/**
+			 * Obtiene el elemento con id = 'app'
+			 */
+			el: '#app',
+			/**
+			 * Objeto con key-value que va a contener todas las variables que
+			 * queremos que reemplace dentro del elemento definido anteriormente,
+			 * en este caso '#app'
+			 */
+			data: {
+				contador: 0	
+			},
+			/**
+			* Metodos en Vue.js
+			* sumar y restar
+			*/
+			//methods: {
+			//	sumar: function() {
+			//	this.contador++
+			//	},
+			//	restar: function() {
+			//		this.contador--
+			//	}
+			//}
+		})
+	</script>
+</body>
+</html>
